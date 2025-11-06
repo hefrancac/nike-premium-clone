@@ -1,0 +1,102 @@
+/* src/index.css */
+
+/* 1. Importando a Fonte (Poppins, como no seu plano) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
+
+/* 2. Definindo as Variáveis de Cor (Paleta Minimalista) */
+:root {
+  --preto: #111;
+  --branco: #ffffff;
+  --cinza-claro: #f4f4f4;
+  --cinza-medio: #999;
+  --accent: #007bff; /* Cor de destaque (pode mudar depois) */
+
+  --font-principal: 'Poppins', sans-serif;
+}
+
+/* 3. Reset Global (Para consistência em todos os navegadores) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-principal);
+  background-color: var(--branco);
+  color: var(--preto);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 4. Estilos de Títulos (Bold, como você pediu) */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+
+/* ---------------------------------- */
+/* 3. Seção de Produtos em Destaque */
+/* (Este é o bloco que você adicionou) */
+/* ---------------------------------- */
+
+.featured-products {
+  /* 7. Espaçamento generoso */
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  /* 7. Tipografia Bold para títulos (já definido antes, mas centralizando) */
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+.product-grid {
+  display: grid;
+  /* 8. Responsividade: Grid adaptável */
+  /* Cria colunas de no mínimo 300px, e no máximo 1 fração (1fr) */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem; /* Espaço entre os cards */
+}
+
+
+/* 8. Responsividade: Ajustes para mobile */
+@media (max-width: 768px) {
+  .featured-products {
+    padding: 3rem 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .product-grid {
+    /* No mobile, força uma coluna única */
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
