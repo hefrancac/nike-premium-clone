@@ -11,7 +11,7 @@
   color: var(--branco);
   
   /* 7. Imagem full-bleed (sangrada) */
-  background-image: url('https://images.unsplash.com/photo-1491553693421-50a62abf002c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE2NzM4OTA2MTk&ixlib=rb-4.0.3&q=80&w=1080');
+  background-image: url('/herosite.avif');
   background-size: cover;
   background-position: center;
   overflow: hidden; /* Garante que nada vaze */

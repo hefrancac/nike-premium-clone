@@ -1,4 +1,4 @@
-/* src/components/Header.css (CORRIGIDO) */
+/* src/components/Header.css (COMPLETO E ATUALIZADO) */
 
 /* 1. Barra de Promoção */
 .promo-bar {
@@ -32,13 +32,13 @@
   letter-spacing: 1px;
 }
 
-/* ----- ESTAS SÃO AS CORREÇÕES ----- */
-.nav-menu-desktop { /* <-- MUDADO DE .nav-menu */
+/* 1. Menu Desktop (Corrigido) */
+.nav-menu-desktop {
   display: flex;
   gap: 2rem;
 }
 
-.nav-menu-desktop a { /* <-- MUDADO DE .nav-menu a */
+.nav-menu-desktop a {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.9rem;
@@ -47,7 +47,7 @@
 }
 
 /* Micro-interação (underline) */
-.nav-menu-desktop a::after { /* <-- MUDADO DE .nav-menu a::after */
+.nav-menu-desktop a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -58,17 +58,16 @@
   transition: width 0.3s ease;
 }
 
-.nav-menu-desktop a:hover::after { /* <-- MUDADO DE .nav-menu a:hover::after */
+.nav-menu-desktop a:hover::after {
   width: 100%;
 }
-/* ----- FIM DAS CORREÇÕES ----- */
 
-
+/* 1. Ícones da Navegação */
 .nav-icons {
   display: flex;
   gap: 1.5rem;
   font-size: 1.1rem;
-  align-items: center; /* Bom para alinhar o botão do carrinho */
+  align-items: center; /* Alinha os botões e links */
 }
 
 .nav-icon {
@@ -79,18 +78,18 @@
   transform: scale(1.15);
 }
 
-/* 6. Estilo do Botão do Carrinho no Header */
+/* 6. Botão do Carrinho */
 .cart-icon-btn {
   background: none;
   border: none;
   cursor: pointer;
   color: var(--preto);
   font-size: 1.1rem;
-  position: relative; /* Para posicionar o contador */
-  padding: 0; /* Resetar padding do botão */
+  position: relative;
+  padding: 0;
 }
 
-/* 6. Contador (badge) */
+/* 6. Contador (badge) do Carrinho */
 .cart-count-badge {
   position: absolute;
   top: -5px;
@@ -108,31 +107,47 @@
   font-family: var(--font-principal);
 }
 
+/* 6. Botão de Busca (Lupa) */
+.search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--preto);
+  font-size: 1.1rem;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+.search-icon-btn:hover {
+  transform: scale(1.15);
+}
+
+
 /* ---------------------------------- */
 /* 8. Responsividade do Header */
 /* ---------------------------------- */
 
+/* 1. Botão Hamburger */
 .hamburger-btn {
-  display: none;
+  display: none; /* Escondido no desktop */
   background: none;
   border: none;
   font-size: 1.3rem;
   color: var(--preto);
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1001; /* Acima do menu mobile */
   position: relative;
 }
 
 /* 1. Menu Mobile Slide-in */
 .nav-menu-mobile {
   position: fixed;
-  top: 103px; 
-  left: -100%; 
+  top: 103px; /* Abaixo da promo-bar (33px) + header (70px) */
+  left: -100%; /* Começa fora da tela */
   width: 100%;
   height: calc(100vh - 103px);
   background-color: var(--branco);
   z-index: 1000;
-  transition: left 0.4s ease; 
+  transition: left 0.4s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,7 +155,7 @@
 }
 
 .nav-menu-mobile.open {
-  left: 0; 
+  left: 0; /* Entra na tela */
 }
 
 .nav-menu-mobile ul {
@@ -166,11 +181,11 @@
   background-color: var(--cinza-claro);
 }
 
-
-/* Media Query (Breakpoint) */
+/* 8. Media Query (Breakpoint) */
+/* Quando a tela for menor que 768px... */
 @media (max-width: 768px) {
   
-  .nav-menu-desktop { /* <--- Agora isto vai funcionar */
+  .nav-menu-desktop {
     display: none; /* Esconde o menu desktop */
   }
 

@@ -1,0 +1,107 @@
+/* src/components/SearchOverlay.css (NOVO DESIGN FLUTUANTE) */
+
+.search-overlay {
+  /* 1. Alinhamento Fixo logo abaixo do Header */
+  position: fixed;
+  top: 103px; /* Altura da promo-bar (33px) + header (70px) */
+  left: 0;
+  width: 100%;
+  height: 0; /* Começa com altura zero */
+  
+  background-color: var(--branco);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1004; /* Acima do conteúdo principal, mas abaixo do carrinho */
+  
+  /* Esconde o que estiver fora da área visível */
+  overflow: hidden; 
+  
+  /* 2. Animação de Altura (Expansão suave) */
+  transition: height 0.4s ease-in-out; 
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3. Quando está aberto, define a altura máxima */
+.search-overlay.open {
+  /* Define uma altura que cubra bem a tela */
+  height: 200px; 
+}
+
+.search-bar-container {
+  width: 100%;
+  max-width: 1400px; /* Largura máxima igual ao container principal */
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--preto);
+  padding: 0 2rem; /* Padding igual ao header */
+}
+
+/* O resto do estilo de input e resultados fica igual */
+.search-input {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 1rem 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: var(--font-principal);
+  color: var(--preto);
+}
+.search-input:focus {
+  outline: none;
+}
+.search-input::placeholder {
+  color: #ccc;
+}
+
+.search-close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--preto);
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.search-results {
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 1rem;
+  padding: 0 2rem;
+  /* Garante que os resultados não quebrem o layout */
+  overflow-y: auto; 
+}
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+}
+.search-result-item:hover {
+  background-color: var(--cinza-claro);
+}
+.search-result-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  background-color: var(--cinza-claro);
+  border-radius: 4px;
+}
+.search-result-name {
+  font-weight: 600;
+}
+
+/* 8. Responsividade: Ajustes para mobile */
+@media (max-width: 768px) {
+    .search-bar-container {
+        padding: 0 1.5rem; /* Ajusta o padding para mobile */
+    }
+    .search-results {
+        padding: 0 1.5rem;
+    }
+}
