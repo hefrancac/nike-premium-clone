@@ -1,13 +1,18 @@
-// src/App.jsx
+// src/App.jsx (Final: Controla as Modals, Busca e Login/Cadastro)
 
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useAuth } from './context/AuthContext'; // Importar o hook de autenticação
 
 // Importar Componentes de Layout
 import Header from './components/Header';
 import CartSlideIn from './components/CartSlideIn';
 import Footer from './components/Footer';
-import SearchOverlay from './components/SearchOverlay'; 
+import SearchOverlay from './components/SearchOverlay';
+
+// Importar Modals
+import SignUpModal from './components/SignUpModal';
+import LoginModal from './components/LoginModal'; // NOVO
 
 // Importar as "Telas" (Screens)
 import HomeScreen from './screens/HomeScreen';
@@ -15,40 +20,67 @@ import ProductScreen from './screens/ProductScreen';
 import CategoryScreen from './screens/CategoryScreen';
 
 function App() {
-  // 1. O estado para controlar a busca
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { login } = useAuth(); // Pega a função de login do Context
 
-  // 2. Função de TOGGLE (Alternar): inverte o estado atual
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // NOVO ESTADO
+
+  // Funções de Controle
   const toggleSearch = () => setIsSearchOpen(prev => !prev);
-  // (Nota: mantemos o closeSearch para ser usado pelo botão 'X' dentro do overlay)
-  const closeSearch = () => setIsSearchOpen(false); 
+  const closeSearch = () => setIsSearchOpen(false);
+
+  const closeSignUpModal = () => setIsSignUpModalOpen(false);
+  const openSignUpModal = () => setIsSignUpModalOpen(true);
+  
+  const closeLoginModal = () => setIsLoginModalOpen(false);
+  const openLoginModal = () => setIsLoginModalOpen(true);
+
+  // Lógica de Sucesso: Salva o usuário no contexto após Login OU Cadastro
+  const handleLoginSuccess = (userInfo) => {
+      login(userInfo); // Salva o usuário no Context e LocalStorage
+      closeSignUpModal();
+      closeLoginModal();
+  };
+
 
   return (
     <Router>
-      {/* 3. Passar a nova função 'toggleSearch' para o Header */}
-      <Header toggleSearch={toggleSearch} /> 
+      {/* Passar as funções de abertura de AMBOS os modais para o Header */}
+      <Header 
+        toggleSearch={toggleSearch} 
+        openSignUpModal={openSignUpModal} 
+        openLoginModal={openLoginModal} 
+      />
       
       <CartSlideIn />
-      
       <SearchOverlay 
         isSearchOpen={isSearchOpen}
-        closeSearch={closeSearch} // Ainda é necessário para o botão 'X' no SearchOverlay
+        closeSearch={closeSearch} 
       />
 
       <main>
         <Routes>
-          {/* Rota 1: Página Inicial */}
           <Route path="/" element={<HomeScreen />} />
-          
-          {/* Rota 2: Página de Detalhes do Produto */}
           <Route path="/produto/:id" element={<ProductScreen />} />
-          
-          {/* Rota 3: Página de Categoria */}
           <Route path="/categoria/:categoryName" element={<CategoryScreen />} />
         </Routes>
       </main>
       
       <Footer />
+      
+      {/* Modals de Autenticação */}
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        closeModal={closeLoginModal}
+        onLoginSuccess={handleLoginSuccess}
+      />
+      
+      <SignUpModal 
+        isOpen={isSignUpModalOpen} 
+        closeModal={closeSignUpModal} 
+        onSignUpSuccess={handleLoginSuccess} // Usa a mesma função para logar após cadastro
+      />
     </Router>
   );
 }

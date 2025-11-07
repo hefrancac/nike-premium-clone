@@ -1,18 +1,19 @@
-// server.js
+// nike-clone-backend/server.js (FINAL, após a criação do start.js)
 
 console.log("--- DEBUG: server.js INICIADO ---");
 
 import express from 'express';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv'; // NÃO PRECISA MAIS DESTA LINHA
 import cors from 'cors';
+
+// Importações de Configuração e Rotas
 import connectDB from './config/db.js';
-import productRoutes from './routes/productRoutes.js'; // <-- ADICIONE AQUI (1/2)
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 console.log("--- DEBUG: Importações concluídas ---");
 
-// Carregar variáveis de ambiente do .env
-dotenv.config();
-console.log("--- DEBUG: dotenv.config() chamado ---");
+// As variáveis de ambiente já foram carregadas pelo start.js!
 
 // Conectar ao Banco de Dados
 console.log("--- DEBUG: Chamando connectDB() agora... ---");
@@ -22,20 +23,23 @@ console.log("--- DEBUG: PÓS-CHAMADA connectDB() ---");
 const app = express();
 
 // Middlewares
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Permite requisições do seu Front-End
+app.use(express.json()); // Permite que o servidor aceite dados JSON no body
 
 // Rota de Teste
 app.get('/', (req, res) => {
     res.send('API está funcionando...');
 });
 
-// Use as rotas de produtos
-app.use('/api/products', productRoutes); // <-- ADICIONE AQUI (2/2)
+// ROTAS DA APLICAÇÃO
+app.use('/api/products', productRoutes); 
+app.use('/api/users', userRoutes);       
+
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
+    // O PORT agora é lido corretamente a partir do process.env no start.js
     console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
 

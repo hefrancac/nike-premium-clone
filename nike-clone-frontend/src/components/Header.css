@@ -1,13 +1,27 @@
-/* src/components/Header.css (COMPLETO E ATUALIZADO) */
+/* src/components/Header.css (CÓDIGO COMPLETO E FINALIZADO) */
 
 /* 1. Barra de Promoção */
 .promo-bar {
+  display: flex; /* Adicionado para centralização */
+  justify-content: center; /* Centraliza o conteúdo na barra */
+  
   background-color: var(--preto);
   color: var(--branco);
   text-align: center;
   padding: 0.5rem;
   font-size: 0.8rem;
   font-weight: 600;
+  height: 33px; /* Garante altura fixa */
+}
+
+/* Limpeza para centralizar a mensagem após remover o botão antigo */
+.promo-bar-content {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 /* 2. Header Fixo */
@@ -32,7 +46,7 @@
   letter-spacing: 1px;
 }
 
-/* 1. Menu Desktop (Corrigido) */
+/* 1. Menu Desktop */
 .nav-menu-desktop {
   display: flex;
   gap: 2rem;
@@ -67,7 +81,7 @@
   display: flex;
   gap: 1.5rem;
   font-size: 1.1rem;
-  align-items: center; /* Alinha os botões e links */
+  align-items: center;
 }
 
 .nav-icon {
@@ -77,6 +91,70 @@
 .nav-icon:hover {
   transform: scale(1.15);
 }
+
+
+/* ---------------------------------- */
+/* NOVO CSS: DROPDOWN DE USUÁRIO */
+/* ---------------------------------- */
+
+.user-menu-container {
+    position: relative;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.user-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--preto);
+    font-size: 1.1rem;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+.user-icon-btn:hover {
+    transform: scale(1.15);
+}
+
+.user-dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-claro);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    
+    display: flex;
+    flex-direction: column;
+    width: 150px; 
+    
+    z-index: 100; 
+    padding-top: 5px; 
+}
+
+.user-dropdown-menu button {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--preto);
+    width: 100%;
+}
+
+.user-dropdown-menu button:hover {
+    background-color: var(--cinza-claro);
+}
+
+
+/* ---------------------------------- */
+/* ÍCONES DE BUSCA E CARRINHO */
+/* ---------------------------------- */
 
 /* 6. Botão do Carrinho */
 .cart-icon-btn {
@@ -123,26 +201,26 @@
 
 
 /* ---------------------------------- */
-/* 8. Responsividade do Header */
+/* 8. Responsividade do Header e Mobile */
 /* ---------------------------------- */
 
 /* 1. Botão Hamburger */
 .hamburger-btn {
-  display: none; /* Escondido no desktop */
+  display: none; 
   background: none;
   border: none;
   font-size: 1.3rem;
   color: var(--preto);
   cursor: pointer;
-  z-index: 1001; /* Acima do menu mobile */
+  z-index: 1001; 
   position: relative;
 }
 
 /* 1. Menu Mobile Slide-in */
 .nav-menu-mobile {
   position: fixed;
-  top: 103px; /* Abaixo da promo-bar (33px) + header (70px) */
-  left: -100%; /* Começa fora da tela */
+  top: 103px; 
+  left: -100%; 
   width: 100%;
   height: calc(100vh - 103px);
   background-color: var(--branco);
@@ -155,7 +233,7 @@
 }
 
 .nav-menu-mobile.open {
-  left: 0; /* Entra na tela */
+  left: 0; 
 }
 
 .nav-menu-mobile ul {
@@ -181,19 +259,18 @@
   background-color: var(--cinza-claro);
 }
 
-/* 8. Media Query (Breakpoint) */
-/* Quando a tela for menor que 768px... */
+/* 8. Media Query (Mobile Breakpoint) */
 @media (max-width: 768px) {
   
   .nav-menu-desktop {
-    display: none; /* Esconde o menu desktop */
+    display: none; 
   }
 
   .hamburger-btn {
-    display: block; /* Mostra o botão hamburger */
+    display: block; 
   }
 
   .navbar {
-    padding: 0 1.5rem; /* Menor padding no mobile */
+    padding: 0 1.5rem; 
   }
 }
