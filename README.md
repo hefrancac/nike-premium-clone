@@ -4,7 +4,7 @@ Clone de um e-commerce premium focado em calçados e vestuário esportivo, inspi
 
 [Link para o deploy (ainda não temos)]
 
-![Imagem do Projeto (adicione um print da tela aqui)](./screenshot.png)
+<img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/06be5efb-0d08-4a7d-b756-3c76b8768092" />
 
 ---
 
