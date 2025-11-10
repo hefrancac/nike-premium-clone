@@ -23,6 +23,15 @@ const userSchema = new mongoose.Schema(
             required: true,
             default: false,
         },
+        
+        // --- NOVO CAMPO ADICIONADO ---
+        wishlist: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product', // Faz referência ao nosso 'Product' model
+            },
+        ],
+        // --- FIM DO NOVO CAMPO ---
     },
     {
         timestamps: true,

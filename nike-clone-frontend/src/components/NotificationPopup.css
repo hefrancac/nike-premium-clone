@@ -1,0 +1,41 @@
+/* src/components/NotificationPopup.css */
+
+.notification-popup {
+  position: fixed;
+  bottom: 20px; /* Posição no rodapé */
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+  
+  background-color: var(--preto);
+  color: var(--branco);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  
+  z-index: 3000; /* Acima de tudo */
+  font-weight: 600;
+  font-size: 0.9rem;
+  
+  /* 3. Animação de Fade-in e Fade-out */
+  animation: fadeInOut 3s ease-out forwards; 
+}
+
+/* Animação para a notificação aparecer e desaparecer */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    bottom: 0px;
+  }
+  15% { /* Sobe e aparece */
+    opacity: 1;
+    bottom: 20px;
+  }
+  85% { /* Fica visível */
+    opacity: 1;
+    bottom: 20px;
+  }
+  100% { /* Desce e desaparece */
+    opacity: 0;
+    bottom: 0px;
+  }
+}

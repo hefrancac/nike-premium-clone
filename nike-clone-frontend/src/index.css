@@ -1,4 +1,4 @@
-/* src/index.css */
+/* src/index.css (COMPLETO E ATUALIZADO) */
 
 /* 1. Importando a Fonte (Poppins, como no seu plano) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
@@ -31,6 +31,15 @@ body {
   color: var(--preto);
 }
 
+/* --- NOVO ESPAÇAMENTO PARA O HEADER FIXO --- */
+main {
+  /* Adiciona o espaçamento no topo para compensar o header fixo */
+  /* (Altura da Promo-bar 33px + Altura do Header 70px = 103px) */
+  padding-top: 103px; 
+}
+/* ------------------------------------------ */
+
+
 a {
   text-decoration: none;
   color: inherit;
@@ -57,7 +66,6 @@ h3 { font-size: 1.5rem; }
 
 /* ---------------------------------- */
 /* 3. Seção de Produtos em Destaque */
-/* (Este é o bloco que você adicionou) */
 /* ---------------------------------- */
 
 .featured-products {

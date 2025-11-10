@@ -1,0 +1,30 @@
+/* src/components/CheckoutSteps.css */
+
+.checkout-steps {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.checkout-steps .step {
+  flex: 1;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--cinza-claro);
+  color: var(--cinza-medio);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Etapa Ativa ou Completa */
+.checkout-steps .step.active {
+  border-bottom-color: var(--preto);
+  color: var(--preto);
+}
+
+.checkout-steps .step a {
+  color: var(--preto);
+}

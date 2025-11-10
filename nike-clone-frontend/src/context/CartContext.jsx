@@ -1,33 +1,41 @@
-// src/context/CartContext.jsx
+// src/context/CartContext.jsx (ATUALIZADO COM clearCart)
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// 1. Criar o Contexto
 const CartContext = createContext();
 
-// 2. Criar o "Hook" personalizado (para facilitar o uso)
+// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
   return useContext(CartContext);
 };
 
-// 3. Criar o "Provider" (o componente que vai guardar os dados)
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false); // Controla se o slide-in está visível
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem('cartItems')) || []
+  );
+  
+  const [shippingAddress, setShippingAddress] = useState(
+    JSON.parse(localStorage.getItem('shippingAddress')) || {}
+  );
 
-  // Função para abrir o carrinho
+  const [paymentMethod, setPaymentMethod] = useState(
+    JSON.parse(localStorage.getItem('paymentMethod')) || 'PayPal'
+  );
+
+  const [isCartOpen, setIsCartOpen] = useState(false); 
+
+  // Salva os itens no localStorage sempre que 'cartItems' mudar
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const openCart = () => setIsCartOpen(true);
-
-  // Função para fechar o carrinho
   const closeCart = () => setIsCartOpen(false);
 
-  // Função para adicionar um produto ao carrinho
   const addToCart = (productToAdd) => {
-    // Verifica se o item já existe no carrinho
+    // ... (lógica existente de adicionar)
     const existingItem = cartItems.find((item) => item._id === productToAdd._id);
-
     if (existingItem) {
-      // Se existe, apenas aumenta a quantidade (qty)
       setCartItems(
         cartItems.map((item) =>
           item._id === productToAdd._id
@@ -36,19 +44,31 @@ export const CartProvider = ({ children }) => {
         )
       );
     } else {
-      // Se não existe, adiciona-o ao carrinho com quantidade 1
       setCartItems([...cartItems, { ...productToAdd, qty: 1 }]);
     }
-
-    openCart(); // Abre o carrinho automaticamente ao adicionar
+    openCart(); 
   };
 
-  // Função para remover um produto do carrinho
   const removeFromCart = (productId) => {
     setCartItems(cartItems.filter((item) => item._id !== productId));
   };
   
-  // 4. Agrupar todos os valores e funções que queremos "partilhar"
+  const saveShippingAddress = (data) => {
+    setShippingAddress(data);
+    localStorage.setItem('shippingAddress', JSON.stringify(data));
+  };
+
+  const savePaymentMethod = (method) => {
+    setPaymentMethod(method);
+    localStorage.setItem('paymentMethod', JSON.stringify(method));
+  };
+
+  // 1. NOVA FUNÇÃO: Limpa o carrinho do estado
+  const clearCart = () => {
+    setCartItems([]);
+    // O useEffect acima vai atualizar o localStorage para '[]' automaticamente
+  };
+  
   const value = {
     cartItems,
     isCartOpen,
@@ -56,11 +76,17 @@ export const CartProvider = ({ children }) => {
     removeFromCart,
     openCart,
     closeCart,
-    // Vamos adicionar uma contagem total de itens
-    cartItemCount: cartItems.reduce((total, item) => total + item.qty, 0)
+    cartItemCount: cartItems.reduce((total, item) => total + item.qty, 0),
+    
+    shippingAddress,
+    saveShippingAddress,
+    
+    paymentMethod,
+    savePaymentMethod,
+    
+    clearCart, // 2. EXPORTAR A NOVA FUNÇÃO
   };
 
-  // 5. Retornar o Provider com os valores partilhados
   return (
     <CartContext.Provider value={value}>
       {children}

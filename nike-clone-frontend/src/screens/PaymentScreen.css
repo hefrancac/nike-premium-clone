@@ -1,0 +1,57 @@
+/* src/screens/PaymentScreen.css */
+
+.payment-container {
+  max-width: 600px; /* Mais estreito que o de Endereço */
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  min-height: 60vh;
+}
+
+.payment-form {
+  background-color: var(--branco);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.payment-title {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.payment-options {
+  margin-bottom: 2rem;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--cinza-claro);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.payment-option:has(input:checked) {
+  border-color: var(--preto);
+  background-color: #f9f9f9;
+}
+
+.payment-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+}
+
+.payment-option label {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.payment-form .btn-action.btn-primary {
+  width: 100%;
+  margin-top: 1rem;
+}

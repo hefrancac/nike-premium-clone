@@ -1,72 +1,68 @@
-// data/products.js (LISTA ATUALIZADA)
+// nike-clone-backend/data/products.js (APENAS PRODUTOS PREMIUM COM GALERIA)
 
 const products = [
     {
-        name: 'Tênis Velocity X',
-        description: 'Desafie seus limites com o Velocity X. Leve, responsivo e feito para velocidade.',
-        category: 'Corrida',
-        price: 799.90,
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE2NzM4OTA0ODk&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: 'Novo',
-    },
-    {
-        name: 'Jaqueta Repelente',
-        description: 'Não deixe a chuva parar você. Tecido leve e 100% repelente à água.',
-        category: 'Treino',
-        price: 449.90,
-        image: 'https://images.unsplash.com/photo-1511886929837-354d827aae26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE2NzM4OTA1MjY&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: 'Best Seller',
-    },
-    {
-        name: 'Tênis Air Legacy',
-        description: 'O clássico reinventado. Conforto e estilo para o seu dia a dia.',
+        name: 'Balenciaga Moletom Tape Type',
+        description: 'Moletom preto com capuz clássico, ombros deslocados, bainha e punhos canelados e detalhe desgastado. Composição: 100% algodão.',
         category: 'Casual',
-        price: 899.90,
-        image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE2NzM4OTA1NTE&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: '',
+        price: 6890.90,
+        image: '/images/products/balenciaga_tapetype_frente.jpg', // Imagem de capa
+        images: [ // Galeria completa
+            '/images/products/balenciaga_tapetype_frente.jpg', // Imagem 4
+            '/images/products/balenciaga_tapetype_lado.jpg'     // Imagem 5
+        ],
+        badge: 'Balenciaga',
+        colors: ['Preto', 'Cinza'],
     },
     {
-        name: 'Legging Performance',
-        description: 'Compressão ideal e total liberdade de movimento para o seu treino.',
-        category: 'Treino',
-        price: 299.90,
-        image: 'https://images.unsplash.com/photo-1572055115203-662210c4d440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE2NzM4OTA1ODk&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: 'Novo',
-    },
-    // --- NOVOS PRODUTOS ADICIONADOS ---
-    {
-        name: 'Camisa Dry Fit Masculina',
-        description: 'Tecnologia que absorve o suor, ideal para treinos de alta intensidade.',
-        category: 'Treino',
-        price: 159.90,
-        image: 'https://images.unsplash.com/photo-1579758782352-78d7807b06d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE3MDAxMjU1MDQ&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: 'Novo',
-    },
-    {
-        name: 'Moletom com Capuz Storm',
-        description: 'Blusa de frio pesada e confortável para aquecer no inverno.',
+        name: 'Balenciaga Suéter com logo',
+        description: 'Suéter preto produzido na Itália. Decote careca, mangas longas, bordado de logo no busto, bainha e punhos canelados. Composição: 100% lã.',
         category: 'Casual',
-        price: 389.90,
-        image: 'https://images.unsplash.com/photo-1596701777265-f81d18721c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE3MDAxMjU1NTY&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: 'Inverno',
+        price: 5790.00,
+        image: '/images/products/balenciaga_sweater_frente.jpg', // Imagem de capa
+        images: [ // Galeria completa
+            '/images/products/balenciaga_sweater_frente.jpg',    // Imagem 6
+            '/images/products/balenciaga_sweater_modelo1.jpg',   // Imagem 7
+            '/images/products/balenciaga_sweater_costas.jpg',    // Imagem 8
+            '/images/products/balenciaga_sweater_modelo2.jpg'    // Imagem 9
+        ],
+        badge: 'Balenciaga',
+        colors: ['Preto', 'Azul Marinho'],
     },
     {
-        name: 'Camiseta de Corrida Feminina',
-        description: 'Leveza e respirabilidade para seus longos treinos de corrida.',
-        category: 'Corrida',
-        price: 129.90,
-        image: 'https://images.unsplash.com/photo-1574041132791-c67d6c551afc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE3MDAxMjU2MDk&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: '',
+        name: 'Balenciaga Moletom Automobili Lamborghini',
+        description: 'Moletom com capuz Automobili Lamborghini. Preto, motivo Lamborghini Shield, bolso canguru, mangas longas e acabamento canelado. Composição: 100% algodão.',
+        category: 'Casual',
+        price: 6290.00,
+        image: '/images/products/balenciaga_lamborghini_hoodie.jpg',
+        images: ['/images/products/balenciaga_lamborghini_hoodie.jpg'], // (Adicione mais imagens se tiver)
+        badge: 'Exclusivo',
+        colors: ['Preto', 'Amarelo'],
     },
     {
-        name: 'Tênis Max Cushion 3.0',
-        description: 'Máximo amortecimento para conforto em longas distâncias.',
-        category: 'Corrida',
-        price: 999.90,
-        image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUwNjl8MHwxfGFsbHx8fHx8fHx8fDE3MDAxMjU2NjM&ixlib=rb-4.0.3&q=80&w=1080',
-        badge: 'Premium',
+        name: 'Diesel T-Boxt-Den T-shirt',
+        description: 'Camiseta cinza com decote careca, mangas curtas e acabamento canelado. Composição: 100% algodão.',
+        category: 'Casual',
+        price: 649.90,
+        image: '/images/products/diesel_tboxtden_tshirt.jpg',
+        images: ['/images/products/diesel_tboxtden_tshirt.jpg'], // (Adicione mais imagens se tiver)
+        badge: 'Diesel',
+        colors: ['Cinza', 'Preto', 'Branco'],
     },
-    // --- FIM DOS NOVOS PRODUTOS ---
+    {
+        name: 'Diesel Camiseta S-cooler-L1',
+        description: 'Camiseta preta com decote careca e patch de logo frontal. Composição: 100% algodão.',
+        category: 'Casual',
+        price: 519.90,
+        image: '/images/products/diesel_scoolerl1_frente.jpg', // Imagem de capa
+        images: [ // Galeria completa
+            '/images/products/diesel_scoolerl1_frente.jpg',    // Imagem 1
+            '/images/products/diesel_scoolerl1_modelo.jpg',    // Imagem 2
+            '/images/products/diesel_scoolerl1_costas.jpg'     // Imagem 3
+        ],
+        badge: 'Diesel',
+        colors: ['Preto', 'Branco'],
+    }
 ];
 
 export default products;

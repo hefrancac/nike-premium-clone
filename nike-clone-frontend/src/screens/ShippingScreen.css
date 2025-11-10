@@ -1,4 +1,4 @@
-/* src/screens/ProductScreen.css (COMPLETO E ATUALIZADO COM GALERIA E CORES) */
+/* src/screens/ProductScreen.css (COMPLETO E ATUALIZADO) */
 
 .product-screen-container {
   max-width: 1200px;
@@ -164,13 +164,6 @@
 .color-option.active {
   box-shadow: 0 0 0 2px var(--preto); /* Borda de seleção */
 }
-/* Fallback para cores com nomes */
-.color-option[style*="preto"] { background-color: #222; }
-.color-option[style*="cinza"] { background-color: #888; }
-.color-option[style*="branco"] { background-color: #FFF; }
-.color-option[style*="amarelo"] { background-color: #FFD700; }
-.color-option[style*="azul"] { background-color: #007bff; }
-
 
 /* Botões de Ação */
 .btn-action {
@@ -324,9 +317,43 @@
   }
 }
 
-/* Grid de Produtos Relacionados */
+/* Grid de Produtos Relacionados (menor) */
 .related-products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem; 
+}
+
+/* ---------------------------------------------------- */
+/* 11. CORREÇÃO: Fallbacks para Nomes de Cores em Português */
+/* ---------------------------------------------------- */
+
+.color-option {
+  /* Fundo cinza claro padrão para que não fiquem transparentes */
+  background-color: #f4f4f4; 
+}
+
+.color-option[title*="Preto"] { 
+  background-color: #222; 
+}
+.color-option[title*="Cinza"] { 
+  background-color: #888; 
+}
+.color-option[title*="Branco"] { 
+  background-color: #FFF; 
+}
+.color-option[title*="Amarelo"] { 
+  background-color: #FFD700; 
+}
+.color-option[title*="Azul Marinho"] {
+  background-color: #000022ff; /* Navy */
+}
+.color-option[title*="Vermelho"] { 
+  background-color: #D93025; 
+}
+.color-option[title*="Verde"] { 
+  background-color: #1E824C; 
+}
+.color-option[title*="Rosa"] { 
+  background-color: #FFC0CB; 
 }

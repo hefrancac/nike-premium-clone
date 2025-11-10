@@ -1,45 +1,46 @@
-// src/components/Header.jsx
+// src/components/Header.jsx (SIMPLIFICADO)
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-// Importa o ícone de usuário
 import { FaSearch, FaRegHeart, FaShoppingBag, FaBars, FaTimes, FaUser } from 'react-icons/fa'; 
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext'; 
+import { useAuth } from '../context/AuthContext'; // Já importamos o AuthContext
 
-// Recebe 'openSignUpModal' como prop (para o botão Cadastrar-se)
-const Header = ({ toggleSearch, openSignUpModal }) => { 
-  const { openCart, cartItemCount } = useCart();
+// 1. REMOVEMOS 'openWishlist' das props
+const Header = ({ toggleSearch, openSignUpModal, openLoginModal }) => { 
+  const { openCart, cartItemCount } = useCart(); 
+  
+  // 2. PEGAMOS 'openWishlist' DIRETO DO CONTEXTO
+  const { user, isAuthenticated, logout, openWishlist } = useAuth(); 
   
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // NOVO ESTADO para o menu de usuário
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); 
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-  
-  // Função para abrir/fechar o menu de usuário
-  const toggleUserMenu = () => {
-    setIsUserMenuOpen(prev => !prev);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(false);
+  const toggleUserMenu = () => setIsUserMenuOpen(prev => !prev);
 
-  // Funções que fecham o dropdown e abrem o modal
-  const handleSignUpClick = () => {
-    setIsUserMenuOpen(false); // Fecha o dropdown
-    openSignUpModal();         // Abre o modal de cadastro
+  const handleUserAction = (action) => {
+    setIsUserMenuOpen(false); 
+    if (action === 'logout') {
+      logout();
+    } else if (action === 'register') {
+      openSignUpModal(); 
+    } else if (action === 'login') {
+      openLoginModal(); 
+    }
   }
   
-  const handleLoginClick = () => {
-    setIsUserMenuOpen(false); // Fecha o dropdown
-    // Futuramente, abriria um modal de Login, mas por enquanto:
-    alert("Funcionalidade de Login futura!"); 
+  const handleWishlistClick = () => {
+      if (!isAuthenticated) {
+          openLoginModal(); 
+      } else {
+          openWishlist(); // 3. A função vinda do Contexto
+      }
   }
-
 
   return (
     <>
-      {/* Apenas a mensagem de promoção (o botão de login foi removido daqui) */}
       <div className="promo-bar">
         Frete grátis para pedidos acima de R$299
       </div>
@@ -50,7 +51,6 @@ const Header = ({ toggleSearch, openSignUpModal }) => {
             <Link to="/">PREMIUM</Link>
           </div>
 
-          {/* Menu principal (Desktop) */}
           <ul className="nav-menu-desktop">
             <li><Link to="/">Novidades</Link></li>
             <li><Link to="/categoria/Corrida">Corrida</Link></li>
@@ -63,32 +63,33 @@ const Header = ({ toggleSearch, openSignUpModal }) => {
             <button onClick={toggleSearch} className="nav-icon search-icon-btn">
               <FaSearch />
             </button>
-            <a href="#" className="nav-icon"><FaRegHeart /></a>
             
-            {/* NOVO ÍCONE DE USUÁRIO (com Dropdown) */}
+            <button onClick={handleWishlistClick} className="nav-icon wishlist-icon-btn">
+              <FaRegHeart />
+            </button>
+            
             <div className="user-menu-container">
               <button onClick={toggleUserMenu} className="nav-icon user-icon-btn">
-                <FaUser />
+                {isAuthenticated ? user.name.split(' ')[0] : <FaUser />}
               </button>
               
-              {/* O Dropdown Menu */}
               {isUserMenuOpen && (
                 <div className="user-dropdown-menu">
-                  {/* Link que chama o modal de Cadastro */}
-                  <button onClick={handleSignUpClick}>
-                    Cadastrar-se
-                  </button>
-                  {/* Link que seria o Login */}
-                  <button onClick={handleLoginClick}>
-                    Login
-                  </button>
+                  {isAuthenticated ? (
+                    <>
+                      <button disabled style={{opacity: 0.7}}>Olá, {user.name.split(' ')[0]}</button>
+                      <button onClick={() => handleUserAction('logout')}>Sair</button>
+                    </>
+                  ) : (
+                    <>
+                      <button onClick={() => handleUserAction('login')}>Login</button>
+                      <button onClick={() => handleUserAction('register')}>Cadastrar-se</button>
+                    </>
+                  )}
                 </div>
               )}
             </div>
-            {/* Fim do NOVO ÍCONE DE USUÁRIO */}
 
-
-            {/* Botão do Carrinho */}
             <button onClick={openCart} className="nav-icon cart-icon-btn">
               <FaShoppingBag />
               {cartItemCount > 0 && (
@@ -96,7 +97,6 @@ const Header = ({ toggleSearch, openSignUpModal }) => {
               )}
             </button>
             
-            {/* Botão Hamburger (Mobile) */}
             <button className="hamburger-btn" onClick={toggleMobileMenu}>
               {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -104,16 +104,7 @@ const Header = ({ toggleSearch, openSignUpModal }) => {
         </nav>
       </header>
 
-      {/* Menu Mobile (Slide-in) */}
-      <div className={`nav-menu-mobile ${isMobileMenuOpen ? 'open' : ''}`}>
-        <ul onClick={toggleMobileMenu}> 
-          <li><Link to="/">Novidades</Link></li>
-          <li><Link to="/categoria/Corrida">Corrida</Link></li>
-          <li><Link to="/categoria/Treino">Treino</Link></li>
-          <li><Link to="/categoria/Casual">Casual</Link></li>
-          <li><Link to="/">Promoções</Link></li>
-        </ul>
-      </div>
+      {/* ... (Menu Mobile) ... */}
     </>
   );
 };

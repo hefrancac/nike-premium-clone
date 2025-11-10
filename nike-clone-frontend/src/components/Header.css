@@ -1,9 +1,9 @@
-/* src/components/Header.css (CÓDIGO COMPLETO E FINALIZADO) */
+/* src/components/Header.css (ATUALIZADO PARA HEADER FLUTUANTE) */
 
-/* 1. Barra de Promoção */
+/* 1. Barra de Promoção (AGORA FIXA) */
 .promo-bar {
-  display: flex; /* Adicionado para centralização */
-  justify-content: center; /* Centraliza o conteúdo na barra */
+  display: flex;
+  justify-content: center;
   
   background-color: var(--preto);
   color: var(--branco);
@@ -11,10 +11,16 @@
   padding: 0.5rem;
   font-size: 0.8rem;
   font-weight: 600;
-  height: 33px; /* Garante altura fixa */
+  
+  /* --- NOVOS ESTILOS --- */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1010; /* Z-index alto para ficar sobre tudo */
+  height: 33px; /* Altura fixa (aprox. 0.5rem + 0.8rem * 1.5) */
 }
 
-/* Limpeza para centralizar a mensagem após remover o botão antigo */
+/* Centraliza a mensagem */
 .promo-bar-content {
   max-width: 1400px;
   width: 100%;
@@ -24,10 +30,16 @@
   position: relative;
 }
 
-/* 2. Header Fixo */
+/* 2. Header Fixo (AGORA FIXO) */
 .header-fixed {
   background-color: var(--branco);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  
+  /* --- NOVOS ESTILOS --- */
+  position: fixed;
+  top: 33px; /* Fixado abaixo da barra de promoção */
+  width: 100%;
+  z-index: 1009; /* Abaixo da promo-bar, mas acima do resto */
 }
 
 .navbar {
@@ -39,6 +51,9 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+
+/* ... (O restante do seu Header.css - .logo, .nav-menu-desktop, .nav-icons, .user-menu, .hamburger, etc. - continua EXATAMENTE IGUAL) ... */
+/* (Copie e cole o restante do seu arquivo CSS daqui para baixo) */
 
 .logo a {
   font-size: 1.5rem;
@@ -94,7 +109,7 @@
 
 
 /* ---------------------------------- */
-/* NOVO CSS: DROPDOWN DE USUÁRIO */
+/* DROPDOWN DE USUÁRIO */
 /* ---------------------------------- */
 
 .user-menu-container {
@@ -121,16 +136,13 @@
     position: absolute;
     top: 100%; 
     right: 0;
-    
     background-color: var(--branco);
     border: 1px solid var(--cinza-claro);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    
     display: flex;
     flex-direction: column;
     width: 150px; 
-    
     z-index: 100; 
     padding-top: 5px; 
 }
@@ -153,10 +165,10 @@
 
 
 /* ---------------------------------- */
-/* ÍCONES DE BUSCA E CARRINHO */
+/* ÍCONES (BUSCA, WISHLIST, CARRINHO) */
 /* ---------------------------------- */
 
-/* 6. Botão do Carrinho */
+/* Botão do Carrinho */
 .cart-icon-btn {
   background: none;
   border: none;
@@ -167,7 +179,7 @@
   padding: 0;
 }
 
-/* 6. Contador (badge) do Carrinho */
+/* Contador (badge) do Carrinho */
 .cart-count-badge {
   position: absolute;
   top: -5px;
@@ -185,7 +197,7 @@
   font-family: var(--font-principal);
 }
 
-/* 6. Botão de Busca (Lupa) */
+/* Botão de Busca (Lupa) */
 .search-icon-btn {
   background: none;
   border: none;
@@ -196,6 +208,22 @@
   transition: transform 0.2s ease;
 }
 .search-icon-btn:hover {
+  transform: scale(1.15);
+}
+
+/* NOVO: Botão da Wishlist (Coração) */
+.wishlist-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--preto);
+  font-size: 1.1rem;
+  padding: 0;
+  transition: transform 0.2s ease;
+  display: flex; 
+  align-items: center;
+}
+.wishlist-icon-btn:hover {
   transform: scale(1.15);
 }
 
@@ -219,7 +247,7 @@
 /* 1. Menu Mobile Slide-in */
 .nav-menu-mobile {
   position: fixed;
-  top: 103px; 
+  top: 103px; /* ESTA ALTURA JÁ ESTÁ CORRETA (33px + 70px) */
   left: -100%; 
   width: 100%;
   height: calc(100vh - 103px);

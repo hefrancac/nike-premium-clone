@@ -1,4 +1,4 @@
-// models/productModel.js
+// nike-clone-backend/models/productModel.js (ATUALIZADO COM GALERIA)
 
 import mongoose from 'mongoose';
 
@@ -21,21 +21,48 @@ const productSchema = new mongoose.Schema(
             required: [true, "Por favor, adicione um preço"],
             default: 0,
         },
-        image: {
+        image: { // A imagem de capa (usada nos cards)
             type: String,
             required: [true, "Por favor, adicione uma URL de imagem"],
         },
-        badge: { // Para os badges "Novo", "Best Seller" do seu plano
+        
+        // --- NOVO CAMPO PARA A GALERIA ---
+        images: {
+            type: [String], // Um array de strings (links de imagem)
+            default: [],
+        },
+        // --- FIM DO NOVO CAMPO ---
+
+        badge: { 
             type: String,
             default: '',
         },
+        searchName: {
+            type: String,
+            index: true,
+        },
+        colors: {
+            type: [String],
+            default: [],
+        },
     },
     {
-        // Cria os campos createdAt e updatedAt automaticamente
         timestamps: true,
     }
 );
 
-const Product = mongoose.model('Product', productSchema);
+// Lógica de Pré-Salvamento (continua igual)
+productSchema.pre('save', function(next) {
+    if (this.isModified('name') || this.isNew) {
+        const removeDiacritics = (text) => {
+            return text
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+        };
+        this.searchName = removeDiacritics(this.name).toLowerCase();
+    }
+    next();
+});
 
+const Product = mongoose.model('Product', productSchema);
 export default Product;
