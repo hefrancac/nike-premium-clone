@@ -92,12 +92,3 @@ npm install
 npm run dev
 ```
 Abra http://localhost:5173 no seu navegador para ver o site!
-
-
-### Último Commit
-
-Depois de salvar o `README.md`, envie-o para o GitHub:
-```bash
-git add README.md
-git commit -m "Adiciona README.md profissional ao projeto"
-git push
