@@ -49,7 +49,7 @@ Este projeto foi construído utilizando uma arquitetura moderna, separando o Fro
 
 **1. Clone o repositório:**
 ```bash
-git clone [https://github.com/seu-nome/nike-premium-clone.git](https://github.com/seu-nome/nike-premium-clone.git)
+git clone https://github.com/hefrancac/nike-premium-clone.git
 cd nike-premium-clone
 ```
 2. Configure o Back-End:
